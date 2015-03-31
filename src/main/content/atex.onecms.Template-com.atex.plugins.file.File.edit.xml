@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<batch xmlns="http://www.polopoly.com/polopoly/cm/xmlio">
+  <content>
+    <metadata>
+      <contentid>
+        <major>AppConfig</major>
+        <externalid>atex.onecms.Template-com.atex.plugins.file.File.edit</externalid>
+      </contentid>
+
+      <security-parent>
+        <externalid>atex.onecms.ContributorToolTemplateList</externalid>
+
+      </security-parent>
+
+      <input-template>
+        <externalid>atex.onecms.Template.it</externalid>
+      </input-template>
+    </metadata>
+
+    <component name="name" group="polopoly.Content">File Edit Template</component>
+    <file name="template.json" encoding="relative">com.atex.plugins.file.File.edit.json</file>
+  </content>
+</batch>

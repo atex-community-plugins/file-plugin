@@ -1,0 +1,13 @@
+# This file lists web resources of this plugin that should be rendered on all
+# pages. See "Plugin contributed web resources" on http://support.polopoly.com for
+# documentation.
+#
+# Examples:
+#
+# Add the stylesheets in the css folder to the head section of all pages
+#/css
+#
+# Render an output template in the head section of a page
+#com.atex.plugins.myplugin.Head.ot
+
+

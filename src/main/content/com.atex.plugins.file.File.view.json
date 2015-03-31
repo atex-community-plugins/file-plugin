@@ -1,0 +1,73 @@
+{
+  "id": "com.atex.plugins.file.File.view",
+
+  "type": "com.atex.plugins.file.FileContentDataBean",
+
+  "label": "File View",
+  "namePath": ["contentData", "title"],
+
+  "aspects": {
+    "atex.Files": {},
+    "atex.Metadata": {}
+  },
+
+  "dataBindings": [
+    {
+      "label": "File",
+      "widget": "pTextOutput",
+
+      "domainObjects": {
+        "data": ["contentData", "filePath"]
+      }
+    },
+    {
+      "label": "Name",
+      "widget": "pTextOutput",
+
+      "domainObjects": {
+        "data": ["contentData", "title"]
+      }
+    },
+    {
+      "label": "Description",
+      "widget": "pTextOutput",
+
+      "domainObjects": {
+        "data": ["contentData", "description"]
+      }
+    },
+    {
+      "label": "Byline",
+      "widget": "pTextOutput",
+
+      "domainObjects": {
+        "data": ["contentData", "byline"]
+      }
+    },
+    {
+      "label": "Associated Sites",
+      "widget": "pAssociatedSites",
+
+      "config": {
+        "editable": false
+      },
+
+      "domainObjects": {
+        "associatedSites": "p.InsertionInfo/associatedSites",
+        "taxonomyIds": "atex.Metadata/taxonomyIds"
+      }
+    },
+    {
+      "label": "Metadata",
+      "widget": "pMetadata",
+
+      "config": {
+        "editable": false
+      },
+
+      "domainObjects": {
+        "data": "atex.Metadata"
+      }
+    }
+  ]
+}

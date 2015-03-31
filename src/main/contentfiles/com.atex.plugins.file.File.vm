@@ -1,0 +1,14 @@
+#set($contentIdString = $content.contentId.contentId.contentIdString)
+#set($version = $content.contentId.version)
+#set($filePath = $content.contentData.filePath)
+#set($src = "/filedelivery/policy:$contentIdString:$version/$filePath")
+<div class="element-file">
+    #if($content.contentData.title && $content.contentData.title != "")
+    <p class="meta">$!esc.html($content.contentData.title)
+        #if($content.contentData.byline && $content.contentData.byline != "")
+
+          <span class="byline">$!esc.html($content.contentData.byline)</span>
+        #end
+    </p>
+    #end
+</div>

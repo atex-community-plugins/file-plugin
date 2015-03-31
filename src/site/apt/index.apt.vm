@@ -1,0 +1,105 @@
+  ${project.description}
+
+Installation
+
+  To add the plugin dependencies to your project, edit the project <<<pom.xml>>> and add:
+
++-----------------------------------------------------------------+
+<project>
+  ...
+  <dependencies>
+    ...
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>${project.artifactId}</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>${project.artifactId}</artifactId>
+      <version>${project.version}</version>
+      <classifier>contentdata</classifier>
+    </dependency>
+    ...
+  </dependencies>
+  ...
+</project>
++-----------------------------------------------------------------+
+
+  Also know that this plugin requires that the artifacts filedelivery-service (version 10.12.0+), onecms-lib (2.0.1+)
+  are in your project's top pom:
+
++-----------------------------------------------------------------+
+<project>
+  ...
+  <dependencies>
+    ...
+      <dependency>
+          <groupId>com.polopoly</groupId>
+          <artifactId>filedelivery-service</artifactId>
+          <version>10.12.0</version>
+      </dependency>
+     <dependency>
+       <groupId>com.atex</groupId>
+       <artifactId>onecms-lib</artifactId>
+       <version>2.0.1</version>
+       <classifier>contentdata</classifier>
+     </dependency>
+
+
+    ...
+  </dependencies>
+  ...
+</project>
++-----------------------------------------------------------------+
+
+  And orchid-onecms-plugin (2.0.1+) in webapp-polopoly's pom:
+
++-----------------------------------------------------------------+
+<project>
+  ...
+  <dependencies>
+    ...
+     <dependency>
+       <groupId>com.atex.plugins</groupId>
+       <artifactId>orchid-onecms-plugin</artifactId>
+       <version>2.0.1</version>
+     </dependency>
+     <dependency>
+       <groupId>com.atex.plugins</groupId>
+       <artifactId>orchid-onecms-plugin</artifactId>
+       <version>2.0.1</version>
+       <classifier>contentdata</classifier>
+     </dependency>
+    ...
+  </dependencies>
+  ...
+</project>
++-----------------------------------------------------------------+
+
+  Running <<<mvn p:run>>> in your project, the plugin should be imported to the system. The plugin
+  should show up in the plugins list and the file templates should be available in their respective locations.
+
+  Finally if your are running Gong 1.0, you also need to edit the file <<<source-common/src/main/java/com/atex/gong/servlet/FrontServletContextListener.java>>> like this:
+
++-----------------------------------------------------------------+
+...
+ import java.util.logging.Logger;
+
+ import com.atex.onecms.content.repository.CouchbaseClientComponent;
+ import com.polopoly.application.Application;
+ import com.polopoly.application.ApplicationStatusReporter;
+ import com.polopoly.application.ConnectionProperties;
+...
+ public class FrontServletContextListener implements ServletContextListener {
+             LRUSynchronizedUpdateCache syncCache = new LRUSynchronizedUpdateCache();
+             application.addApplicationComponent(syncCache);
+
+ (NEW)       application.addApplicationComponent(new HttpFileServiceClient());
+
+             // Read connection properties.
+             application.readConnectionProperties(connectionProperties);
+...
++-----------------------------------------------------------------+
+
+ (NEW) should not be a part of the code, but is used to signify the lines you need to add.

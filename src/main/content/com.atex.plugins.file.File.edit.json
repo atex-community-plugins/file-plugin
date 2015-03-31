@@ -1,0 +1,81 @@
+{
+  "id": "com.atex.plugins.file.File.edit",
+
+  "type": "com.atex.plugins.file.FileContentDataBean",
+
+  "label": "File",
+  "namePath": "contentData/title",
+
+  "aspects": {
+    "atex.Files": {},
+    "atex.Metadata": {}
+  },
+
+  "dataBindings": [
+    {
+      "label": "File",
+      "widget": "pFileUploader",
+      "config": {
+        "allowedMimeTypes": ["application/pdf", "application/msword"]
+      },
+
+      "domainObjects": {
+        "filePath": "contentData/filePath",
+        "files": "atex.Files"
+      }
+    },
+    {
+      "label": "Name",
+      "widget": "pTextInput",
+
+      "config": {
+        "placeholder": "Leave empty to use name from the file"
+      },
+
+      "domainObjects": {
+        "data": "contentData/title"
+      }
+    },
+    {
+      "label": "Description",
+      "widget": "pTextArea",
+
+      "config": {
+        "placeholder": "Description of file goes here..."
+      },
+
+      "domainObjects": {
+        "data": "contentData/description"
+      }
+    },
+    {
+      "label": "Byline",
+      "widget": "pTextInput",
+
+      "config": {
+        "placeholder": "Byline of file goes here..."
+      },
+
+      "domainObjects": {
+        "data": "contentData/byline"
+      }
+    },
+    {
+      "label": "Associated Sites",
+      "widget": "pAssociatedSites",
+
+      "domainObjects": {
+        "associatedSites": "p.InsertionInfo/associatedSites",
+        "taxonomyIds": "atex.Metadata/taxonomyIds"
+      }
+    },
+    {
+      "label": "Metadata",
+      "widget": "pMetadata",
+
+      "domainObjects": {
+        "data": "atex.Metadata"
+      }
+    }
+  ]
+}

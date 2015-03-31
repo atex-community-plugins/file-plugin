@@ -1,0 +1,38 @@
+User guide
+
+    The file element will be added as per usual with the orchid interface. But can also be accessed in ACT by the use
+    of the supplied file onecms template.
+
+* Using the file plugin with ACT
+
+    To be able to create videos standalone (not tied to an article) with ACT add the following config to <<<atex.onecms.ContributorToolTemplateList.xml>>>:
+
++-----------------------------------------------------------------+
+<contentlist mode="reset">
+  ...
+  <entry withMetadata="false">
+    <metadata>
+      <referredContent>
+        <contentid>
+          <externalid>atex.onecms.Template-com.atex.plugins.file.File.edit</externalid>
+        </contentid>
+      </referredContent>
+    </metadata>
+  </entry>
+  ...
+</contentlist>
++-----------------------------------------------------------------+
+
+  This will make the template show up in the create list in ACT.
+
+* Current limitations
+
+** File format compatibility
+
+  The current file solution depends on HTML5 file, which restricts the supported file files to those supported by the
+  internet browser. For a chart of browser compatibility for HTML5 file, please refer to {{{https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats#Browser_compatibility}Mozillas browser compability chart}}.
+
+** Multi-format source
+
+  The HTML5 file tag supports multiple sources, making browser incompability less of a problem. Unfortunatly, this is
+  not supported by the this version of the File Plugin, but is something we strive to support in later versions.

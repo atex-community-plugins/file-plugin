@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<batch xmlns="http://www.polopoly.com/polopoly/cm/xmlio">
+  <content clear="true">
+    <metadata>
+      <contentid>
+        <major>AppConfig</major>
+        <externalid>p.IndexMapping.Internal.com.atex.plugins.file.File</externalid>
+      </contentid>
+      <security-parent>
+        <externalid>p.SolrIndexDefinitionHome</externalid>
+      </security-parent>
+      <input-template>
+        <externalid>p.IndexMapping</externalid>
+      </input-template>
+    </metadata>
+    <component group="polopoly.Content" name="name">Internal index mappings for files</component>
+    <component group="mapping" name="contentData.title">title</component>
+    <component group="mapping" name="name">text</component>
+    <component group="mapping" name="contentData.description">text</component>
+    <component group="mapping" name="contentData.byline">byline</component>
+    <component group="mapping" name="associatedUsers.associatedUsers">modifiedBy</component>
+  </content>
+
+  <content>
+    <metadata>
+      <contentid>
+        <major>AppConfig</major>
+        <externalid>p.InternalIndexDefinition</externalid>
+      </contentid>
+    </metadata>
+    <contentref group="mappers" name="com.atex.plugins.file.File">
+      <contentid>
+        <externalid>p.IndexMapping.Internal.com.atex.plugins.file.File</externalid>
+      </contentid>
+    </contentref>
+  </content>
+</batch>
