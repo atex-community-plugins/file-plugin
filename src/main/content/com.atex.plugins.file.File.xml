@@ -3,9 +3,10 @@
   <input-template name="com.atex.plugins.file.File" label="com.atex.plugins.file.file">
     <editor contextName="orchid_TOCENTRY">com.atex.plugins.file.widget.OFileTocEntryRenderer</editor>
     <viewer contextName="orchid_TOCENTRY">com.atex.plugins.file.widget.OFileTocEntryRenderer</viewer>
+    <editor contextName="orchid_INBOXITEM">com.atex.plugins.file.widget.OFileInboxEntryWidget</editor>
+    <viewer contextName="orchid_INBOXITEM">com.atex.plugins.file.widget.OFileInboxEntryWidget</viewer>
     <editor contextName="orchid_THUMBENTRY">com.atex.plugins.file.widget.OSearchThumb</editor>
     <viewer contextName="orchid_THUMBENTRY">com.atex.plugins.file.widget.OSearchThumb</viewer>
-
 
     <param name="ViewState_insert">false</param>
     <param name="ViewState_refresh">true</param>
@@ -36,5 +37,10 @@
     <output-templates mode="www">
       <id>com.atex.plugins.file.File.ot</id>
     </output-templates>
+
+    <output-templates mode="embed">
+      <id>com.atex.plugins.file.File.embed.ot</id>
+    </output-templates>
+
   </input-template>
 </template-definition>

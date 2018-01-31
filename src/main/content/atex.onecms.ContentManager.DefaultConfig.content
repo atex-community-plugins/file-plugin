@@ -1,0 +1,5 @@
+# Put our variant in default config
+id:.
+major:3
+inputtemplate:com.atex.onecms.content.ContentManager.config
+component:inputTemplateMapping:com.atex.plugins.file.FileContentDataBean:com.atex.plugins.file.File

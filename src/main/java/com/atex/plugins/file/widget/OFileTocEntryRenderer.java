@@ -1,5 +1,7 @@
 package com.atex.plugins.file.widget;
 
+import java.io.IOException;
+
 import com.atex.onecms.content.Content;
 import com.atex.onecms.content.ContentManager;
 import com.atex.onecms.content.ContentResult;
@@ -8,17 +10,11 @@ import com.atex.onecms.content.IdUtil;
 import com.atex.onecms.content.Subject;
 import com.atex.plugins.baseline.widget.OContentListEntryBasePolicyWidget;
 import com.atex.plugins.file.FileContentDataBean;
-import com.polopoly.cm.app.orchid.widget.OContentIdLink;
-import com.polopoly.cm.client.CMException;
 import com.polopoly.cm.client.CmClient;
 import com.polopoly.cm.client.CmClientBase;
 import com.polopoly.orchid.OrchidException;
 import com.polopoly.orchid.context.Device;
 import com.polopoly.orchid.context.OrchidContext;
-import com.polopoly.orchid.widget.OImage;
-import com.polopoly.util.StringUtil;
-
-import java.io.IOException;
 
 public class OFileTocEntryRenderer extends OContentListEntryBasePolicyWidget {
 
@@ -26,6 +22,7 @@ public class OFileTocEntryRenderer extends OContentListEntryBasePolicyWidget {
     public void initSelf(final OrchidContext oc) throws OrchidException {
         super.initSelf(oc);
         CmClient cmClient = (CmClient) oc.getApplication().getApplicationComponent(CmClientBase.DEFAULT_COMPOUND_NAME);
+
         ContentManager contentManager = cmClient.getContentManager();
         ContentVersionId versionId = cmClient.getContentManager().resolve(IdUtil.fromPolicyContentId(getPolicy().getContentId()), Subject.NOBODY_CALLER);
         ContentResult<FileContentDataBean> result = contentManager

@@ -2,6 +2,7 @@ package com.atex.plugins.file;
 
 import com.atex.onecms.content.AspectedPolicy;
 import com.atex.onecms.content.metadata.MetadataInfo;
+import com.atex.plugins.baseline.inbox.InboxFlagsConfig;
 import com.polopoly.application.Application;
 import com.polopoly.application.IllegalApplicationStateException;
 import com.polopoly.cm.client.CMException;
@@ -19,6 +20,13 @@ public class FilePolicy extends AspectedPolicy<FileContentDataBean> implements M
      */
     public FilePolicy(final CmClient cmClient, final Application application) throws IllegalApplicationStateException {
         super(cmClient, application);
+    }
+
+    @Override
+    public void postCreateSelf() throws CMException {
+        super.postCreateSelf();
+
+        new InboxFlagsConfig().apply(this);
     }
 
     @Override

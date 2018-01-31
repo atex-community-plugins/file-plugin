@@ -1,49 +1,114 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <parent>
-    <groupId>com.polopoly</groupId>
-    <artifactId>public</artifactId>
-    <version>10.12.0</version>
-    <relativePath />
-  </parent>
+
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.atex.plugins</groupId>
-  <artifactId>file</artifactId>
-  <version>1.0</version>
-  <packaging>jar</packaging>
+
+  <!-- artifact description -->
+
   <name>File Plugin</name>
+
   <description>
     The File Plugin for GONG, making a native file upload available to the project.
   </description>
+
+  <parent>
+    <groupId>com.polopoly</groupId>
+    <artifactId>public</artifactId>
+    <version>10.16.5</version>
+    <relativePath />
+  </parent>
+
   <organization>
     <name>Atex</name>
     <url>http://www.atex.com</url>
   </organization>
- 
+
+  <!-- artifact definition -->
+
+  <groupId>com.atex.plugins</groupId>
+  <artifactId>file</artifactId>
+  <version>1.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <scm>
+    <developerConnection>scm:git:git@github.com:atex-community-plugins/file-plugin.git</developerConnection>
+    <url>https://github.com/atex-community-plugins/file-plugin</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <name>Polopoly PD Plugins</name>
+      <id>polopoly-pd-plugins</id>
+      <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-pd-plugins</url>
+    </repository>
+    <snapshotRepository>
+      <name>Polopoly PD Plugins Snapshots</name>
+      <id>polopoly-pd-plugins-snapshots</id>
+      <url>http://maven.polopoly.com/nexus/content/repositories/polopoly-pd-plugins-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <properties>
-    <polopoly.version>10.12.0</polopoly.version>
-    <baseline.version>4.0.2</baseline.version>
+    <polopoly.version>10.16.5</polopoly.version>
+    <baseline.version>4.0.7-SNAPSHOT</baseline.version>
     <testnext.version>2.0.0</testnext.version>
   </properties>
 
+  <pluginRepositories>
+    <pluginRepository>
+      <id>polopoly-public</id>
+      <name>Polopoly Public</name>
+      <url>http://maven.polopoly.com/nexus/content/groups/polopoly-public</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <repositories>
+    <repository>
+      <id>polopoly-public</id>
+      <name>Polopoly Public</name>
+      <url>http://maven.polopoly.com/nexus/content/groups/polopoly-public</url>
+    </repository>
+    <repository>
+      <id>polopoly-plugins</id>
+      <name>Polopoly Plugins</name>
+      <url>http://maven.polopoly.com/nexus/content/groups/polopoly-plugins</url>
+    </repository>
+  </repositories>
+
   <dependencies>
+
+    <dependency>
+      <groupId>com.polopoly</groupId>
+      <artifactId>polopoly</artifactId>
+      <version>${polopoly.version}</version>
+      <classifier>api</classifier>
+      <type>jar</type>
+      <scope>provided</scope>
+    </dependency>
+
     <dependency>
       <groupId>com.polopoly</groupId>
       <artifactId>polopoly</artifactId>
       <version>${polopoly.version}</version>
       <type>jar</type>
-      <scope>provided</scope>
+      <scope>runtime</scope>
+      <optional>true</optional>
     </dependency>
+
     <dependency>
       <groupId>com.atex.plugins</groupId>
       <artifactId>baseline</artifactId>
       <version>${baseline.version}</version>
+      <scope>provided</scope>
     </dependency>
+
     <dependency>
       <groupId>com.polopoly</groupId>
       <artifactId>legacy-site-plugin</artifactId>
       <version>${polopoly.version}</version>
       <scope>provided</scope>
     </dependency>
+
     <dependency>
       <groupId>com.polopoly</groupId>
       <artifactId>testnext</artifactId>
@@ -51,6 +116,7 @@
       <scope>test</scope>
       <type>pom</type>
     </dependency>
+
   </dependencies>
   <build>
     <pluginManagement>
@@ -68,8 +134,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.5.1</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
@@ -113,44 +179,6 @@
         </executions>
       </plugin>
       -->
-      <!--
-          Compresses css and js resources. Adds .min suffix to target files and puts them alongside
-          the source files. With the configuration below, both the compressed and source
-          resources will be imported to the files content. Which version to use runtime is
-          specified in the _webresources manifest.
-       -->
-      <plugin>
-        <groupId>net.alchim31.maven</groupId>
-        <artifactId>yuicompressor-maven-plugin</artifactId>
-        <version>1.4.0</version>
-        <executions>
-          <execution>
-            <id>compress-js</id>
-            <goals>
-              <goal>compress</goal>
-            </goals>
-            <configuration>
-              <sourceDirectory>${project.basedir}/src/main/javascript</sourceDirectory>
-            </configuration>
-          </execution>
-          <!--
-          <execution>
-            <id>compress-css</id>
-            <goals>
-              <goal>compress</goal>
-            </goals>
-            <configuration>
-              <sourceDirectory>${project.basedir}/src/main/css</sourceDirectory>
-            </configuration>
-          </execution>
-          -->
-        </executions>
-        <configuration>
-          <suffix>.min</suffix>
-          <jswarn>false</jswarn>
-          <outputDirectory>${project.build.directory}/generated-contentfiles</outputDirectory>
-        </configuration>
-      </plugin>
       <plugin>
         <artifactId>p-maven-plugin</artifactId>
         <groupId>com.polopoly.extensions</groupId>
@@ -164,10 +192,12 @@
               <sourceDirectory>${project.basedir}/src/main/less</sourceDirectory>
             </hotFolder>
             -->
+            <!--
             <hotFolder>
               <plugin>net.alchim31.maven:yuicompressor-maven-plugin:compress</plugin>
               <sourceDirectory>${project.basedir}/src/main/javascript</sourceDirectory>
             </hotFolder>
+            -->
             <!--
             <hotFolder>
               <plugin>net.alchim31.maven:yuicompressor-maven-plugin:compress</plugin>
@@ -187,12 +217,14 @@
             <configuration>
               <contentDataFileResources>
 
+                <!--
                 <files>
                   <directory>${project.basedir}/src/main/javascript</directory>
                   <includes>
                     <include>**/*.js</include>
                   </includes>
                 </files>
+                -->
 
                 <!-- Uncomment to include css source files on plugin files content.
                 <files>
@@ -209,12 +241,14 @@
                   </includes>
                 </files>
                 <!-- Remove this source directory if not used -->
+                <!--
                 <files>
                   <directory>${project.build.directory}/generated-contentfiles</directory>
                   <includes>
                     <include>**</include>
                   </includes>
                 </files>
+                -->
               </contentDataFileResources>
             </configuration>
           </execution>
@@ -262,7 +296,7 @@
             <link>http://docs.oracle.com/javase/7/docs/api/</link>
             <link>http://docs.oracle.com/javaee/1.4/api/</link>
           </links>
-          <javadocVersion>1.7</javadocVersion>
+          <javadocVersion>1.8</javadocVersion>
           <docfilessubdirs>true</docfilessubdirs>
           <maxmemory>512m</maxmemory>
         </configuration>
