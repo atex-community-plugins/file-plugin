@@ -49,7 +49,7 @@
   </distributionManagement>
 
   <properties>
-    <polopoly.version>10.16.5</polopoly.version>
+    <polopoly.version>10.18.0</polopoly.version>
     <baseline.version>4.0.9</baseline.version>
     <testnext.version>2.0.0</testnext.version>
   </properties>
