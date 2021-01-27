@@ -51,7 +51,7 @@
   <properties>
     <polopoly.version>10.18.0</polopoly.version>
     <baseline.version>4.0.10</baseline.version>
-    <testnext.version>2.0.0</testnext.version>
+    <testnext.version>2.1.5</testnext.version>
   </properties>
 
   <pluginRepositories>
